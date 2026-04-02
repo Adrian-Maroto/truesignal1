@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TrueSignal.ai</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background: radial-gradient(circle at top, #0f172a, #020617 55%); }
+    .glass { background: rgba(15, 23, 42, 0.65); backdrop-filter: blur(18px); }
+  </style>
+</head>
+<body class="min-h-screen text-white antialiased">
+  <main class="max-w-6xl mx-auto px-6 py-10">
+    <nav class="flex items-center justify-between mb-16">
+      <div class="text-xl font-semibold tracking-tight">TrueSignal.ai</div>
+      <div class="hidden md:flex gap-8 text-sm text-slate-300">
+        <a href="#scanner" class="hover:text-white">Scanner</a>
+        <a href="#pricing" class="hover:text-white">Pricing</a>
+        <a href="#faq" class="hover:text-white">FAQ</a>
+      </div>
+      <a href="#pricing" class="px-4 py-2 rounded-full bg-white text-slate-900 text-sm font-semibold hover:bg-slate-200">Buy Access</a>
+    </nav>
+
+    <section class="grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <span class="inline-flex items-center px-3 py-1 rounded-full border border-cyan-400/30 bg-cyan-400/10 text-cyan-300 text-xs font-medium mb-6">AI face, voice, and video verification</span>
+        <h1 class="text-5xl md:text-7xl font-bold leading-tight tracking-tight">Scan any file and check if it looks AI-generated.</h1>
+        <p class="mt-6 text-lg text-slate-300 max-w-xl">Upload an image, voice clip, or video. TrueSignal sends it to a detection API and shows a simple trust score so you know what is real.</p>
+        <div class="mt-8 flex flex-wrap gap-4">
+          <a href="#scanner" class="px-6 py-3 rounded-full bg-cyan-400 text-slate-950 font-semibold hover:bg-cyan-300">Try Scanner</a>
+          <a href="#pricing" class="px-6 py-3 rounded-full border border-white/15 text-white font-semibold hover:bg-white/5">See Pricing</a>
+        </div>
+      </div>
+
+      <div class="glass rounded-3xl border border-white/10 shadow-2xl p-6" id="scanner">
+        <div class="flex items-center justify-between mb-5">
+          <div>
+            <div class="text-sm text-slate-400">Live demo</div>
+            <div class="text-xl font-semibold">AI Scan</div>
+          </div>
+          <div id="status" class="px-3 py-1 rounded-full bg-slate-700 text-slate-200 text-sm border border-white/10">Waiting for file</div>
+        </div>
+        <input id="fileInput" type="file" accept="image/*,video/*,audio/*" class="block w-full text-sm text-slate-300 file:mr-4 file:rounded-full file:border-0 file:bg-cyan-400 file:px-4 file:py-2 file:font-semibold file:text-slate-950 hover:file:bg-cyan-300" />
+        <button id="scanBtn" class="mt-4 w-full px-6 py-3 rounded-full bg-cyan-400 text-slate-950 font-semibold hover:bg-cyan-300">Run Scan</button>
+        <div class="mt-6 rounded-2xl bg-slate-950/60 border border-white/10 p-4">
+          <div class="flex justify-between text-sm mb-2"><span>Result</span><span id="scoreText">No scan yet</span></div>
+          <div class="h-2 rounded-full bg-white/10 overflow-hidden"><div id="bar" class="h-full w-[0%] bg-gradient-to-r from-cyan-400 to-emerald-400"></div></div>
+          <p id="resultMsg" class="mt-3 text-slate-300 text-sm">Upload a file and click Run Scan.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing" class="mt-24 grid md:grid-cols-3 gap-6">
+      <div class="glass rounded-3xl border border-white/10 p-6">
+        <h3 class="text-xl font-semibold">Starter</h3>
+        <div class="mt-2 text-4xl font-bold">$9</div>
+        <p class="mt-3 text-slate-300">20 scans.</p>
+        <a href="https://buy.stripe.com/test_fZu00igXQ1ogb9wg78ejK00" target="_blank" rel="noopener noreferrer" class="mt-6 inline-block px-5 py-3 rounded-full bg-cyan-400 text-slate-950 font-semibold">Buy Now</a>
+      </div>
+      <div class="glass rounded-3xl border border-white/10 p-6">
+        <h3 class="text-xl font-semibold">Pro</h3>
+        <div class="mt-2 text-4xl font-bold">$19</div>
+        <p class="mt-3 text-slate-300">50 scans.</p>
+        <a href="https://buy.stripe.com/test_fZu00igXQ1ogb9wg78ejK00" target="_blank" rel="noopener noreferrer" class="mt-6 inline-block px-5 py-3 rounded-full bg-cyan-400 text-slate-950 font-semibold">Buy Now</a>
+      </div>
+      <div class="glass rounded-3xl border border-white/10 p-6">
+        <h3 class="text-xl font-semibold">Team</h3>
+        <div class="mt-2 text-4xl font-bold">$49</div>
+        <p class="mt-3 text-slate-300">Unlimited or team access.</p>
+        <a href="https://buy.stripe.com/test_fZu00igXQ1ogb9wg78ejK00" target="_blank" rel="noopener noreferrer" class="mt-6 inline-block px-5 py-3 rounded-full bg-cyan-400 text-slate-950 font-semibold">Buy Now</a>
+      </div>
+    </section>
+
+    <section id="faq" class="mt-24 glass rounded-3xl border border-white/10 p-8 md:p-10 mb-10">
+      <h2 class="text-3xl font-bold">How it works</h2>
+      <div class="mt-4 space-y-4 text-slate-300">
+        <p>1. User uploads a file.</p>
+        <p>2. The website sends it to your backend.</p>
+        <p>3. Your backend calls the deepfake API.</p>
+        <p>4. The score comes back and shows on screen.</p>
+      </div>
+    </section>
+  </main>
+  <script>
+    const scanBtn = document.getElementById('scanBtn');
+    const fileInput = document.getElementById('fileInput');
+    const status = document.getElementById('status');
+    const scoreText = document.getElementById('scoreText');
+    const bar = document.getElementById('bar');
+    const resultMsg = document.getElementById('resultMsg');
+    scanBtn.addEventListener('click', async () => {
+      if (!fileInput.files.length) { status.textContent = 'Pick a file first'; return; }
+      status.textContent = 'Scanning...';
+      scoreText.textContent = 'Loading';
+      resultMsg.textContent = 'Sending file to your backend...';
+      const formData = new FormData();
+      formData.append('file', fileInput.files[0]);
+      try {
+        const res = await fetch('/api/scan', { method: 'POST', body: formData });
+        const data = await res.json();
+        const score = data.score ?? 0;
+        const label = data.label || 'Unknown';
+        status.textContent = label;
+        scoreText.textContent = score + '%';
+        bar.style.width = score + '%';
+        resultMsg.textContent = data.message || 'Scan complete.';
+      } catch (e) {
+        status.textContent = 'Demo mode';
+        scoreText.textContent = '72%';
+        bar.style.width = '72%';
+        resultMsg.textContent = 'Backend not connected yet. This is the UI working, but you still need the API endpoint.';
+      }
+    });
+  </script>
+</body>
+</html>
